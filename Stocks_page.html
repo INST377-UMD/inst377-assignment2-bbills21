@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">    
+    <head> 
+        <meta charset="UTF-8">
+        <title>Stocks</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+
+    <body>
+        <nav>
+            <ul>
+                <li><a href="Home_page.html">Home</a></li>
+                <li><a href="Stocks_page.html">Stocks</a></li>
+                <li><a href="Dog_page.html">Dogs</a></li>
+            </ul>
+        </nav>
+
+        <main>
+            <h1>Stock Tracker</h1>
+            <input type="text" id="stockInput" placeholder="Enter stock symbol (e.g., MSFT)">
+            <select id="daysSelect">
+                <option value="30">30 Days</option>
+                <option value="60">60 Days</option>
+                <option value="90">90 Days</option>
+            </select>
+            <button class = "custom-btn" onclick="getStockData()">Show Chart</button>
+
+            <canvas id="stockChart"></canvas>
+
+            <h2>Top 5 Stocks</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Ticker</th>
+                        <th>Comments</th>
+                        <th>Sentiment</th>
+                    </tr>
+                </thead>
+                <tbody id="top5Stocks">
+                    <!-- Top stocks will be populated here -->
+                </tbody>
+            </table>
+        </main>
+
+        <div class="audio-controls">
+            <h3>Voice Commands</h3>
+            <p> Say Hello Bak to You! "Hello", <br>
+                Change the Page color "Change the color to blue",<br>
+                Navigate to different Page "Navigate to stocks", <br> 
+                Lookup stock "Lookup MSFT"
+            </p>
+            <button onclick="annyang.start()">Turn on Audio</button>
+            <button onclick="annyang.abort()">Turn off Audio</button>
+        </div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/annyang/2.6.1/annyang.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="script.js"></script>
+        <script src="stocks.js"></script>

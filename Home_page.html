@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">    
+    <head> 
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Home</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+
+    <body>
+        <nav>
+            <ul>
+                <li><a href="Home_page.html">Home</a></li>
+                <li><a href="Stocks_page.html">Stocks</a></li>
+                <li><a href="Dog_page.html">Dogs</a></li>
+            </ul>
+        </nav>
+
+        <main>
+            <h1>Welcome to the Home Page</h1>
+            <p id= "quote"></p>
+            <button class= "custom-btn" onclick= "location.href='Stocks_page.html'">Go to Stocks</button>
+            <button class= "custom-btn" onclick= "location.href='Dog_page.html'">Go to Dogs</button>
+        </main>
+
+        <div class="audio-controls">
+            <h3>Voice Command Examples</h3>
+            <p> Say Hello Bak to You! "Hello", <br>Change the Page color "Change the color to blue",<br>Navigate to different Page "Navigate to stocks"</p>
+            <button onclick="annyang.start()">Turn on Audio</button>
+            <button onclick="annyang.abort()">Turn off Audio</button>
+        </div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/annyang/2.6.1/annyang.min.js"></script>
+        <script src="script.js"></script>
+        <script>
+            fetch('https://zenquotes.io/api/random')
+                .then(response => {
+                    console.log('Response status:', response.status);
+                    return response.json();
+                })
+            .then(data => {
+        console.log('Fetched data:', data);
+        document.getElementById('quote').innerText = data[0].q + " - " + data[0].a;
+    })
+    .catch(error => {
+        document.getElementById('quote').innerText = "Could not fetch a quote. Please try again later.";
+        console.error('Error fetching quote:', error);
+    });
+        </script>
+    </body>
+</html>
