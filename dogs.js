@@ -94,6 +94,7 @@ if (annyang) {
                 return;
             }
 
+            
             const breed = window.dogBreeds.find(b => b.name.toLowerCase() === breedName.toLowerCase());
             if (breed) {
                 showBreedInfo(breed);
@@ -101,8 +102,10 @@ if (annyang) {
                 alert(`Breed "${breedName}" not found!`);
             }
         }
+        
     });
 
-    // Start Annyang
-    annyang.start();
+    if (!annyang.isListening()) {
+        annyang.start();
+    }
 }

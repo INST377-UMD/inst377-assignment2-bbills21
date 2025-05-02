@@ -96,11 +96,18 @@ if (annyang) {
             if (lower.includes('stocks')) location.href = 'Stocks_page.html';
             if (lower.includes('dogs')) location.href = 'Dogs_page.html';
         },
-        'lookup *stock': (stock) => {
+        'look up *stock': (stock) => {
             document.getElementById('stockInput').value = stock.toUpperCase();
             document.getElementById('daysSelect').value = "30";
             getStockData();
         }
     });
-    annyang.addCommands(command);
+
+    annyang.addCallback('resutNoMatch', () => {
+        alert('No command matched. Please try again.');
+    })
+
+    if (!annyang.isListening()) {
+        annyang.start();
+    }
 }
