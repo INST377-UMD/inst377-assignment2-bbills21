@@ -72,7 +72,7 @@ function showBreedInfo(breed) {
     document.getElementById('breedInfo').classList.remove('hidden');
 }
 
-// Voice command for dog breeds
+
 // Voice command for dog breeds
 if (annyang) {
     annyang.addCommands({
@@ -88,15 +88,18 @@ if (annyang) {
             if (lower.includes('dogs')) location.href = 'Dog_page.html';
         },
         'load dog breed *breedName': (breedName) => {
+            console.log(`Command received: load dog breed ${breedName}`); // Debugging log
+
             // Check if the dog breeds array is populated
             if (!window.dogBreeds || window.dogBreeds.length === 0) {
                 alert('Dog breeds are not loaded yet. Please try again in a moment.');
                 return;
             }
 
-            
             const breed = window.dogBreeds.find(b => b.name.toLowerCase() === breedName.toLowerCase());
             if (breed) {
+                console.log(`Breed found: ${breed.name}`); // Debugging log
+
                 showBreedInfo(breed);
             } else {
                 alert(`Breed "${breedName}" not found!`);
@@ -108,4 +111,5 @@ if (annyang) {
     if (!annyang.isListening()) {
         annyang.start();
     }
+    console.log('Is Annyang listening?', annyang.isListening());
 }
